@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(Blog Post Title Placeholder) - MRWISENPC</title>
+    <meta name="description" content="(Blog post excerpt or description placeholder)">
+</head>
+<body>
+    <main id="page-content" class="page-container">
+        <article class="blog-post-full card">
+            <header class="blog-post-header">
+                <h1>(Blog Post Title Placeholder)</h1>
+                <p class="post-meta">
+                    <time datetime="YYYY-MM-DD">(Date Placeholder)</time> | <span>Category: (Category Placeholder)</span>
+                </p>
+                </header>
+
+            <section class="blog-post-body">
+                <p>(Introductory paragraph for the blog post placeholder. Lorem ipsum dolor sit amet, consectetur adipiscing elit.)</p>
+                <h2>(Subheading Placeholder)</h2>
+                <p>(Content for the subheading placeholder. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.)</p>
+                <ul>
+                    <li>(List item 1 placeholder)</li>
+                    <li>(List item 2 placeholder)</li>
+                </ul>
+                <blockquote>
+                    <p>(Blockquote placeholder. Ut enim ad minim veniam, quis nostrud exercitation.)</p>
+                </blockquote>
+                <pre><code class="language-javascript">// (Code block placeholder)
+function sample() { return "(Sample code)"; }</code></pre>
+                <p>(Concluding paragraph placeholder. Duis aute irure dolor in reprehenderit.)</p>
+            </section>
+            <div class="back-to-list" style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--border-color);">
+                <a href="/pages/blog.html" class="btn btn-secondary">&larr; Back to Blog</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

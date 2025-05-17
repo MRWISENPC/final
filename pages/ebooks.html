@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebooks - MRWISENPC</title>
+    <meta name="description" content="(Ebooks page description placeholder)">
+</head>
+<body>
+    <main id="page-content" class="page-container">
+        <section class="ebooks-section">
+            <h1>Ebooks (Title Placeholder)</h1>
+            <p>(Ebooks introduction placeholder. Lorem ipsum dolor sit amet.)</p>
+
+            <div class="search-container">
+                <input type="search" id="ebook-search" placeholder="Search ebooks..." aria-label="Search ebooks">
+            </div>
+
+            <div class="ebooks-grid">
+                <article class="card ebook-card">
+                    <img src="/assets/images/ebook-thumb-placeholder.png" alt="(Ebook 1 Thumbnail Alt Text)" class="card-thumbnail">
+                    <div class="ebook-content">
+                        <h2>(Ebook Title 1 Placeholder)</h2>
+                        <p class="ebook-description">(Short description for Ebook 1 placeholder. Consectetur adipiscing elit.)</p>
+                        <div class="ebook-actions">
+                            <a href="/pages/ebooks/ebook-template.html" class="btn" aria-label="View details for Ebook 1">View Details</a>
+                            </div>
+                    </div>
+                </article>
+
+                <article class="card ebook-card">
+                    <img src="/assets/images/ebook-thumb-placeholder.png" alt="(Ebook 2 Thumbnail Alt Text)" class="card-thumbnail">
+                    <div class="ebook-content">
+                        <h2>(Ebook Title 2 Placeholder)</h2>
+                        <p class="ebook-description">(Short description for Ebook 2 placeholder. Sed do eiusmod tempor.)</p>
+                         <div class="ebook-actions">
+                            <a href="/pages/ebooks/ebook-template.html" class="btn" aria-label="View details for Ebook 2">View Details</a>
+                        </div>
+                    </div>
+                </article>
+                 </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

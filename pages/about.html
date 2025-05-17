@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - MRWISENPC</title>
+    <meta name="description" content="(About MRWISENPC - Description Placeholder)">
+    </head>
+<body>
+    <main id="page-content" class="page-container">
+        <section class="about-me-section">
+            <h1>About Me (Title Placeholder)</h1>
+            <div class="bio-container">
+                <img src="/assets/images/profile-placeholder.png" alt="(Profile Image Alt Text)" class="profile-image">
+                <div class="bio-text">
+                    <p>(Bio introduction paragraph placeholder. Lorem ipsum dolor sit amet, consectetur adipiscing elit.)</p>
+                    <p>(Further bio details or mission statement placeholder. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-links card">
+            <h2>Connect (Section Title Placeholder)</h2>
+            <ul>
+                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="(Link Aria Label)">GitHub (Placeholder)</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="(Link Aria Label)">Twitter (Placeholder)</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="(Link Aria Label)">LinkedIn (Placeholder)</a></li>
+            </ul>
+        </section>
+
+        <section class="highlights-timeline card">
+            <h2>Highlights (Section Title Placeholder)</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-content">
+                        <h3>(Year) - (Milestone Title Placeholder)</h3>
+                        <p>(Milestone description placeholder. Ut enim ad minim veniam, quis nostrud exercitation.)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-content">
+                        <h3>(Year) - (Another Milestone Title)</h3>
+                        <p>(Description for another milestone. Duis aute irure dolor in reprehenderit.)</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

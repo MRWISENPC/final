@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - MRWISENPC</title>
+    <meta name="description" content="(Support page description placeholder)">
+</head>
+<body>
+    <main id="page-content" class="page-container">
+        <section class="support-section">
+            <h1>Support (Title Placeholder)</h1>
+            <p class="intro-text">(Introduction to support page placeholder. Lorem ipsum dolor sit amet.)</p>
+
+            <div class="support-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg);">
+                <article class="card support-option">
+                    <h2>(Support Option 1 Title Placeholder)</h2>
+                    <p>(Description for support option 1 placeholder. Consectetur adipiscing elit.)</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn">(Link 1 Placeholder)</a>
+                </article>
+
+                <article class="card support-option">
+                    <h2>(Support Option 2 Title Placeholder)</h2>
+                    <p>(Description for support option 2 placeholder. Sed do eiusmod tempor.)</p>
+                     <a href="#" target="_blank" rel="noopener noreferrer" class="btn">(Link 2 Placeholder)</a>
+                </article>
+
+                 <article class="card support-option">
+                    <h2>(Other Ways to Support Title Placeholder)</h2>
+                    <p>(Description for other support methods placeholder. Ut enim ad minim veniam.)</p>
+                </article>
+            </div>
+            <p class="thank-you-text" style="text-align:center; margin-top: var(--space-xl);">(Thank you message placeholder.)</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

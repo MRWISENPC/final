@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(Ebook Title Placeholder) - MRWISENPC</title>
+    <meta name="description" content="(Detailed description of the ebook placeholder)">
+</head>
+<body>
+    <main id="page-content" class="page-container">
+        <article class="ebook-detail card">
+            <header class="ebook-detail-header">
+                <h1>(Ebook Title Placeholder)</h1>
+                <p class="ebook-subtitle">(Optional Ebook Subtitle Placeholder)</p>
+            </header>
+
+            <div class="ebook-layout-container">
+                <aside class="ebook-cover">
+                    <img src="/assets/images/ebook-thumb-placeholder.png" alt="(Ebook Cover Alt Text)" class="ebook-cover-image">
+                    <div class="ebook-actions">
+                        <a href="#" download class="btn download-button" aria-label="Download (Ebook Title Placeholder)">Download (Placeholder)</a>
+                        </div>
+                </aside>
+
+                <section class="ebook-info">
+                    <h2>About This Ebook (Placeholder)</h2>
+                    <p>(Detailed Ebook description placeholder. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.)</p>
+
+                    <h3>Key Topics (Placeholder)</h3>
+                    <ul>
+                        <li>(Topic 1 Placeholder)</li>
+                        <li>(Topic 2 Placeholder)</li>
+                        <li>(Topic 3 Placeholder)</li>
+                    </ul>
+                    <p>(More info like author, pages, format placeholder)</p>
+                </section>
+            </div>
+             <div class="back-to-list" style="margin-top: var(--space-lg);">
+                <a href="/pages/ebooks.html" class="btn btn-secondary">&larr; Back to Ebooks</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

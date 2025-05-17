@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - MRWISENPC</title>
+    <meta name="description" content="(Blog page description placeholder)">
+</head>
+<body>
+    <main id="page-content" class="page-container">
+        <section class="blog-section">
+            <h1>Blog (Title Placeholder)</h1>
+            <p>(Blog introduction placeholder. Ut enim ad minim veniam.)</p>
+
+            <div class="search-container">
+                <input type="search" id="blog-search" placeholder="Search blog posts..." aria-label="Search blog posts">
+            </div>
+
+            <div class="blog-list">
+                <article class="card blog-post-summary">
+                    <h2><a href="/pages/blog/post-template.html">(Blog Post Title 1 Placeholder)</a></h2>
+                    <p class="post-meta">
+                        <time datetime="YYYY-MM-DD">(Date Placeholder)</time> | <span>Category: (Category Placeholder)</span>
+                    </p>
+                    <p class="post-excerpt">(Excerpt for Blog Post 1 placeholder. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.)</p>
+                    <a href="/pages/blog/post-template.html" class="btn" aria-label="Read more about Blog Post 1">Read More</a>
+                </article>
+
+                <article class="card blog-post-summary">
+                    <h2><a href="/pages/blog/post-template.html">(Blog Post Title 2 Placeholder)</a></h2>
+                    <p class="post-meta">
+                        <time datetime="YYYY-MM-DD">(Date Placeholder)</time> | <span>Category: (Category Placeholder)</span>
+                    </p>
+                    <p class="post-excerpt">(Excerpt for Blog Post 2 placeholder. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.)</p>
+                    <a href="/pages/blog/post-template.html" class="btn" aria-label="Read more about Blog Post 2">Read More</a>
+                </article>
+                </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+    </footer>
+
+    <script src="/assets/js/layoutLoader.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

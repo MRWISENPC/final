@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | MRWISENPC</title>
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Using CSS variables from the main stylesheet for consistency if cached, otherwise providing fallbacks */
+        :root {
+            --primary-color-404: #007bff;
+            --text-color-404: #212529;
+            --bg-color-404: #f8f9fa;
+            --font-primary-404: 'Inter', sans-serif;
+            --font-secondary-404: 'Space Grotesk', sans-serif;
+            --radius-md-404: 8px;
+        }
+        /* These are duplicated from style.css for standalone functionality, but without the full variable cascade */
+        body.page-404-body {
+            font-family: var(--font-primary-404); background-color: var(--bg-color-404); color: var(--text-color-404);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            min-height: 100vh; text-align: center; margin: 0; padding: 20px;
+        }
+        .status-code-404 {
+            font-family: var(--font-secondary-404); font-size: clamp(6rem, 25vw, 10rem); font-weight: 700;
+            color: var(--primary-color-404); margin: 0; animation: bounceIn404 0.7s ease-out;
+        }
+        .message-404 { font-size: 1.5rem; margin: 20px 0; }
+        .home-link-404 {
+            display: inline-block; padding: 12px 25px; background-color: var(--primary-color-404);
+            color: #fff; text-decoration: none; border-radius: var(--radius-md-404); font-weight: 500; font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .home-link-404:hover { opacity: 0.85; transform: translateY(-3px); }
+        @keyframes bounceIn404 {
+            0% { transform: scale(0.5) translateY(-30px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="page-404-body"> <div class="container-404">
+        <h1 class="status-code-404" aria-label="Error 404">404</h1>
+        <p class="message-404">
+            <span role="img" aria-label="Confused emoji">😕</span>
+            (Oops! Page not found message placeholder.)
+        </p>
+        <p>(Friendly message placeholder - e.g., let's get you back.)</p>
+        <a href="/pages/about.html" class="home-link-404" aria-label="Go to Homepage">(Go to Homepage Button Text Placeholder)</a>
+    </div>
+</body>
+</html>

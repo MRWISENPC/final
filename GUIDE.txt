@@ -1,0 +1,284 @@
+GUIDE.txt - Customizing Your MRWISENPC Static Site
+
+Welcome to your MRWISENPC static site templates! This guide will help you customize the look and feel, add new content, and understand how the site is structured.
+
+-----------------------------------------------------------------------
+TABLE OF CONTENTS
+-----------------------------------------------------------------------
+1.  Understanding the Project Structure
+2.  Customizing the Look and Feel
+    2.1. Changing Colors
+    2.2. Changing Fonts
+    2.3. Adjusting Spacing and Sizes
+    2.4. Modifying Specific Elements (Navbar, Hero, Buttons, Cards)
+3.  Working with Pages
+    3.1. Adding a New Page (e.g., a new section like "Projects")
+    3.2. Adding a New Blog Post
+    3.3. Adding a New Ebook Entry
+    3.4. Linking New Pages in the Navbar
+4.  Customizing Page Layouts
+    4.1. Modifying Existing Page Structures
+    4.2. Ebook Page Card Display Options
+5.  Understanding `layout.html` (The Global Template)
+6.  Understanding JavaScript Files
+    6.1. `layoutLoader.js`
+    6.2. `navActive.js`
+    6.3. `search.js`
+7.  Managing Images
+8.  General Tips for Development
+
+-----------------------------------------------------------------------
+1. UNDERSTANDING THE PROJECT STRUCTURE
+-----------------------------------------------------------------------
+
+/MRWISENPC/
+├── assets/
+│   ├── css/
+│   │   └── style.css         # Primary stylesheet
+│   ├── js/                   # JavaScript files
+│   │   ├── layoutLoader.js   # Loads global layout
+│   │   ├── navActive.js      # Active navbar link highlighter
+│   │   └── search.js         # Search functionality
+│   └── images/               # Site images (logo, thumbnails)
+├── pages/                    # Individual HTML pages
+│   ├── about.html            # Homepage
+│   ├── ebooks.html           # Ebooks list page
+│   ├── blog.html             # Blog list page
+│   ├── support.html          # Support page
+│   ├── 404.html              # Custom 404 error page
+│   ├── blog/
+│   │   └── post-template.html # Template for single blog posts
+│   └── ebooks/
+│       └── ebook-template.html# Template for single ebook pages
+├── layout.html               # Global HTML structure (navbar, hero, etc.)
+├── index.html                # Redirects to about.html
+├── _redirects                # For hosting (Netlify/Vercel redirects)
+└── README.md                 # Project overview
+└── GUIDE.txt                 # This file
+
+Key files for customization:
+- `assets/css/style.css`: For all visual styling.
+- `layout.html`: For global elements like the navbar and hero section.
+- HTML files in `pages/`: For content of individual pages.
+
+-----------------------------------------------------------------------
+2. CUSTOMIZING THE LOOK AND FEEL
+-----------------------------------------------------------------------
+
+All visual styling is controlled by `assets/css/style.css`. This file uses CSS Variables for easy global changes.
+
+2.1. CHANGING COLORS
+   - Open `assets/css/style.css`.
+   - At the top, you'll find the `:root` block.
+   - Modify the color variables (e.g., `--primary-color`, `--bg-color`, `--text-color`).
+     Example:
+     :root {
+         --bg-color: #f0f0f0; /* Change background to a light grey */
+         --text-color: #333333;
+         --primary-color: #ff6347; /* Change primary to a tomato red */
+         /* ... other color variables ... */
+     }
+   - Save the file, and your site's color scheme will update.
+
+2.2. CHANGING FONTS
+   - The site uses Google Fonts ('Inter' and 'Space Grotesk').
+   - To change fonts:
+     1. Go to Google Fonts (fonts.google.com), choose new fonts, and get the `@import` or `<link>` code.
+     2. Update `layout.html`:
+        - If using `<link>`, replace the existing `<link>` tags for Google Fonts in the `<head>` section of `layout.html`.
+          Example (replace with your chosen font link):
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+     3. Update `assets/css/style.css`:
+        - Change the `--font-primary` and `--font-secondary` variables in the `:root` block.
+          Example:
+          :root {
+              --font-primary: 'Roboto', sans-serif;
+              --font-secondary: 'Montserrat', sans-serif;
+              /* ... */
+          }
+        - If your 404 page uses specific font fallbacks in its inline/embedded styles (`pages/404.html`), you might want to update those too for consistency, or ensure the main stylesheet is cached.
+
+2.3. ADJUSTING SPACING AND SIZES
+   - Spacing (margins, paddings) and some sizes are also controlled by CSS variables in `:root` in `style.css`.
+     Examples:
+     --space-sm: 0.5rem;  /* 8px */
+     --space-md: 1rem;    /* 16px */
+     --navbar-height: 60px;
+   - You can adjust these values to change the overall spacing and dimensions of elements.
+
+2.4. MODIFYING SPECIFIC ELEMENTS (Navbar, Hero, Buttons, Cards)
+   - Find the relevant CSS section in `style.css` (sections are commented, e.g., `/* === Navbar === */`).
+   - Navbar:
+     - Height: Change `--navbar-height` variable.
+     - Background/Text Color: Modify `--nav-bg`, `--nav-text-color` variables or the specific styles under `/* === Navbar === */`.
+   - Hero Logo:
+     - Border: In `style.css` under `/* === Hero Section === */`, look for `.hero-logo-image`. You can change `border-width`, `border-color` (via `--hero-logo-border-color`).
+     - Size: Adjust `width` and `height` properties for `.hero-logo-image`.
+     - Hover Animation: Modify the `:hover` state for `.hero-logo-image`.
+   - Buttons:
+     - Style is defined under `/* === General Utility & Content Styles === */` for `.btn`.
+     - Change background, padding, border-radius, etc.
+   - Cards:
+     - Style is defined under `/* === General Utility & Content Styles === */` for `.card`.
+     - Change background, padding, shadow, etc.
+
+-----------------------------------------------------------------------
+3. WORKING WITH PAGES
+-----------------------------------------------------------------------
+
+3.1. ADDING A NEW PAGE (e.g., a new section like "Projects")
+   1. Create a new HTML file in the `pages/` directory (e.g., `projects.html`).
+   2. Copy the basic structure from an existing simple page like `support.html` or use this template:
+
+      ```html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>(Your Page Title) - MRWISENPC</title>
+          <meta name="description" content="(Your page description)">
+          </head>
+      <body>
+          <main id="page-content" class="page-container">
+              <h1>(Your Page Title Placeholder)</h1>
+              <p>(Your page content goes here. Lorem ipsum...)</p>
+              </main>
+
+          <footer class="site-footer">
+              <p>&copy; <span id="current-year">(Year)</span> MRWISENPC. (Footer Text Placeholder)</p>
+          </footer>
+
+          <script src="/assets/js/layoutLoader.js"></script>
+          <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                  const yearSpan = document.getElementById('current-year');
+                  if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+              });
+          </script>
+      </body>
+      </html>
+      ```
+   3. Replace placeholder text with your actual content.
+   4. Add a link to this new page in the navbar (see section 3.4).
+
+3.2. ADDING A NEW BLOG POST
+   1. Go to the `pages/blog/` directory.
+   2. Duplicate `post-template.html`.
+   3. Rename the duplicated file to something descriptive (e.g., `my-new-article.html`). Use hyphens for spaces in filenames (good for URLs).
+   4. Open the new file (`my-new-article.html`) and edit the content:
+      - Update `<title>` and `<meta name="description">`.
+      - Replace all placeholder text like "(Blog Post Title Placeholder)", "(Date Placeholder)", "(Content placeholder)" with your article's content.
+   5. Open `pages/blog.html` (the main blog listing page).
+   6. Add a new `<article class="card blog-post-summary">...</article>` block for your new post. Copy an existing one and update:
+      - The `href` in `<h2><a href="...">` to point to your new file (e.g., `/pages/blog/my-new-article.html`).
+      - The title, date, category, and excerpt.
+
+3.3. ADDING A NEW EBOOK ENTRY
+   1. Similar to blog posts:
+   2. Go to `pages/ebooks/`. Duplicate `ebook-template.html`. Rename it (e.g., `new-ebook-title.html`).
+   3. Edit the new file, replacing placeholders with your ebook's details (title, description, cover image path, download link if applicable). Remember to place the actual ebook cover image in `assets/images/` and update the `src` attribute.
+   4. Open `pages/ebooks.html`.
+   5. Add a new `<article class="card ebook-card">...</article>` block. Copy an existing one and update:
+      - Image `src` and `alt` text.
+      - Title and description.
+      - The `href` for the "View Details" button to point to your new ebook page (e.g., `/pages/ebooks/new-ebook-title.html`).
+
+3.4. LINKING NEW PAGES IN THE NAVBAR
+   1. Open `layout.html`.
+   2. Find the `<ul class="nav-menu">` section.
+   3. Add a new list item `<li>` with a link to your new page.
+      Example for `projects.html`:
+      ```html
+      <ul class="nav-menu">
+          <li><a href="/pages/about.html" class="nav-link">About (Home)</a></li>
+          <li><a href="/pages/ebooks.html" class="nav-link">Ebooks</a></li>
+          <li><a href="/pages/blog.html" class="nav-link">Blog</a></li>
+          <li><a href="/pages/projects.html" class="nav-link">Projects</a></li> <li><a href="/pages/support.html" class="nav-link">Support</a></li>
+      </ul>
+      ```
+   4. Save `layout.html`. The new link will appear on all pages that use this layout.
+   5. The `navActive.js` script should automatically handle highlighting the active link if the `href` matches the current page URL.
+
+-----------------------------------------------------------------------
+4. CUSTOMIZING PAGE LAYOUTS
+-----------------------------------------------------------------------
+
+4.1. MODIFYING EXISTING PAGE STRUCTURES
+   - Each page's unique content is within the `<main id="page-content" class="page-container">` element in its HTML file (e.g., `pages/about.html`).
+   - You can change the HTML structure here (add/remove sections, change order, use different HTML tags like `<aside>`, `<figure>`, etc.).
+   - For styling these changes:
+     - You can add new CSS rules to `assets/css/style.css`.
+     - It's good practice to create specific classes for your new layout elements and style those classes.
+
+4.2. EBOOK PAGE CARD DISPLAY OPTIONS
+   - Open `pages/ebooks.html`.
+   - Find the line `<div class="ebooks-grid">`.
+   - You can change the class to alter the display of ebook cards:
+     - `class="ebooks-grid"`: Default - shows thumbnail, title, description.
+     - `class="ebooks-grid title-only"`: Hides thumbnails.
+     - `class="ebooks-grid thumb-only"`: Hides most text, primarily shows thumbnails. (Note: The CSS for `thumb-only` is basic; you might want to refine its styles in `style.css` for button placement and card padding if you use this option extensively).
+   - This change is made directly in the HTML. If you wanted a dynamic toggle on the page, it would require additional JavaScript.
+
+-----------------------------------------------------------------------
+5. UNDERSTANDING `layout.html` (THE GLOBAL TEMPLATE)
+-----------------------------------------------------------------------
+
+- `layout.html` contains the common elements shared across most pages:
+  - Navbar
+  - Hero section (logo)
+  - Floating "Support Me" button
+  - Common `<head>` elements (favicon link, main stylesheet link, Google Fonts)
+- The `layoutLoader.js` script fetches this file and injects its content into other pages.
+- **Modifying `layout.html` will change these elements on ALL pages that use it.**
+  - Example: To change the main site logo text in the navbar, edit `.nav-logo` in `layout.html`.
+  - To change the hero image, change the `src` of `img.hero-logo-image` in `layout.html`.
+
+-----------------------------------------------------------------------
+6. UNDERSTANDING JAVASCRIPT FILES
+-----------------------------------------------------------------------
+Located in `assets/js/`.
+
+6.1. `layoutLoader.js`
+   - Purpose: Dynamically loads the content of `layout.html` (navbar, hero, etc.) and common `<head>` elements into each page (except `404.html`).
+   - Customization: Generally, you won't need to edit this unless you're significantly changing how the layout is structured or injected.
+
+6.2. `navActive.js`
+   - Purpose: Adds an 'active' class to the current page's link in the navbar for visual highlighting.
+   - Customization: It should work automatically for new pages added correctly to the navbar.
+
+6.3. `search.js`
+   - Purpose: Provides client-side live search/filtering for the Ebooks and Blog pages. It hides items that don't match the typed text.
+   - How it works: It looks for an input field (e.g., `#ebook-search`) and then filters items (e.g., `.ebook-card`) within a specified container (e.g., `.ebooks-grid`) by checking their title and description fields.
+   - Customization:
+     - If you change the IDs of search inputs or the selectors for item containers/titles/descriptions on the blog/ebook pages, you'll need to update them in `search.js` within the `initializeSearch(...)` calls.
+     - Example, if your ebook titles are in `<h3>` instead of `<h2>`:
+       Change `initializeSearch('ebook-search', ..., 'h2', ...)` to `initializeSearch('ebook-search', ..., 'h3', ...)`.
+
+-----------------------------------------------------------------------
+7. MANAGING IMAGES
+-----------------------------------------------------------------------
+
+- All images are in `assets/images/`.
+- **Placeholders:** Replace `profile-placeholder.png`, `ebook-thumb-placeholder.png`, and `favicon.png` with your actual images.
+  - `profile-placeholder.png`: Used for the hero logo and on the About page. Ensure it's somewhat square for the circular hero display.
+  - `favicon.png`: Should be a small square icon (e.g., 32x32 pixels or 64x64 pixels).
+- **Adding New Images:** Place them in `assets/images/` and reference them in your HTML using paths like `/assets/images/your-new-image.jpg`.
+- **Optimization:** Before uploading, optimize your images to reduce file size and improve page load speed. Tools like TinyPNG (for PNG/JPG) or Squoosh can help.
+
+-----------------------------------------------------------------------
+8. GENERAL TIPS FOR DEVELOPMENT
+-----------------------------------------------------------------------
+
+- **Browser Developer Tools:**
+  - Use your browser's developer tools (usually by pressing F12 or right-clicking and selecting "Inspect").
+  - "Inspector" or "Elements" tab: Lets you see the HTML and CSS, and test CSS changes live.
+  - "Console" tab: Shows JavaScript errors or messages.
+- **Test Responsiveness:** Resize your browser window or use the device mode in developer tools to check how the site looks on different screen sizes (desktop, tablet, mobile).
+- **Clear Cache:** Browsers often cache CSS and JavaScript. If your changes don't appear, try a hard refresh (Ctrl+Shift+R or Cmd+Shift+R) or clear your browser cache.
+- **Backups:** Before making significant changes, consider making a backup copy of your project folder.
+- **Placeholder Text:** Systematically go through all HTML files and replace all placeholder text (like "(Title Placeholder)", "(Content goes here)", etc.) with your actual content.
+- **ARIA Labels:** Notice `aria-label` attributes on links and buttons. These are for accessibility. Try to keep them descriptive for users relying on screen readers.
+
+Good luck customizing your site!
