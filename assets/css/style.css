@@ -1,25 +1,37 @@
 /* === CSS Variables === */
 :root {
-    --bg-color: #f8f9fa; /* Light grey background */
-    --text-color: #212529; /* Dark text */
-    --primary-color: #a6aaae; /* Blue */
-    --primary-hover-color: #000000;
-    --card-bg: #ffffff;
-    --border-color: #000000;
-    --nav-bg: #ffffff;
-    --nav-text-color: #343a40;
-    --nav-logo-color: #000000
-    --nav-link-hover-color: var(--primary-color);
-    --support-btn-bg: #c1b7b7;
-    --support-btn-text: #000000;
-    --support-btn-hover-bg: #ffffff;
-    --support-btn-hover-border-color: #000000;
-    --hero-logo-border-color: var(--primary-hover-color);
-    --hero-logo-border-color-hover: #2d00f4;
+    /* Clean Color Palette */
+    --bg-color: #fcfdfe;                     /* Very light, almost white background */
+    --surface-color: #ffffff;                /* For cards, navbars */
+    --text-color: #1f2937;                   /* Cool dark gray for text */
+    --text-secondary-color: #6b7280;         /* Lighter gray for meta text, placeholders */
+    
+    --primary-color: #3b82f6;                /* Vibrant Blue (e.g., Tailwind Blue 500) */
+    --primary-hover-color: #2563eb;          /* Darker Blue (e.g., Tailwind Blue 600) */
+    --primary-focus-shadow-color-rgb: 59, 130, 246; /* RGB for --primary-color, for focus rings */
 
+    --card-bg: var(--surface-color);
+    --border-color: #e5e7eb;                 /* Cool Gray 200 for borders */
+    
+    --nav-bg: var(--surface-color);
+    --nav-text-color: #374151;               /* Cool Gray 700 */
+    --nav-logo-color: var(--primary-color);
+    --nav-link-hover-color: var(--primary-color);
+    --nav-active-bg-color: #eff6ff;          /* Light Blue (e.g., Tailwind Blue 50) for active link bg */
+
+    --support-btn-bg: var(--primary-color);
+    --support-btn-text: #ffffff;
+    --support-btn-hover-bg: var(--primary-hover-color);
+    --support-btn-hover-border-color: #1d4ed8; /* Darkest Blue (e.g., Tailwind Blue 700) for border */
+
+    --hero-logo-border-color: var(--primary-color);
+    --hero-logo-border-color-hover: #60a5fa; /* Brighter Blue (e.g., Tailwind Blue 400) for hover pop */
+
+    /* Fonts */
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'Space Grotesk', sans-serif;
 
+    /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -27,18 +39,24 @@
     --space-xl: 2rem;
     --space-xxl: 3rem;
 
-    --transition-fast: 200ms ease-in-out;
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
     --transition-medium: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
 
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
-    --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+    /* Shadows (More Subtle & Modern) */
+    --shadow-color-rgb: 24, 32, 42; /* Base for RGBA shadows (derived from a dark gray) */
+    --shadow-sm: 0 1px 2px 0 rgba(var(--shadow-color-rgb), 0.06), 0 1px 3px 0 rgba(var(--shadow-color-rgb), 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(var(--shadow-color-rgb), 0.08), 0 2px 4px -2px rgba(var(--shadow-color-rgb), 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(var(--shadow-color-rgb), 0.08), 0 4px 6px -4px rgba(var(--shadow-color-rgb), 0.05);
 
+    /* Border Radii */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
 
-    --navbar-height: 60px; /* Define navbar height for body padding */
+    /* Navbar */
+    --navbar-height: 60px;
 }
 
 /* === Global Resets & Base Styles === */
@@ -53,13 +71,23 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.7;
-    padding-top: var(--navbar-height); /* Space for sticky navbar */
+    padding-top: var(--navbar-height);
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .page-container {
     max-width: 1100px;
     margin: var(--space-xl) auto;
     padding: var(--space-lg);
+    opacity: 0; /* For content fade-in */
+    animation: contentFadeIn 0.7s var(--transition-medium) forwards; /* Delayed fade-in */
+    animation-timing-function: ease-out;
+}
+
+@keyframes contentFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 a {
@@ -75,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-secondary);
     margin-bottom: var(--space-md);
     line-height: 1.3;
-    color: var(--text-color); /* Ensure headings are clearly visible */
+    color: var(--text-color);
 }
 
 img {
@@ -93,9 +121,9 @@ ul { list-style: none; }
     left: 0;
     width: 100%;
     height: var(--navbar-height);
-    background-color: var(--nav-bg); /* Solid, opaque background */
+    background-color: var(--nav-bg);
     box-shadow: var(--shadow-sm);
-    z-index: 1000; /* High z-index */
+    z-index: 1000;
     display: flex;
     align-items: center;
 }
@@ -115,6 +143,10 @@ ul { list-style: none; }
     font-size: 1.7rem;
     font-weight: 700;
     color: var(--nav-logo-color);
+    transition: color var(--transition-fast);
+}
+.nav-logo:hover {
+    color: var(--primary-hover-color);
 }
 
 .nav-menu {
@@ -135,10 +167,10 @@ ul { list-style: none; }
 .nav-menu a:hover,
 .nav-menu a.active {
     color: var(--nav-link-hover-color);
-    font-weight: 700;
+    font-weight: 700; /* Keep bold for active/hover */
 }
 .nav-menu a.active {
-     background-color: rgba(0,123,255,0.05); /* Subtle background for active link */
+    background-color: var(--nav-active-bg-color);
 }
 
 
@@ -148,7 +180,7 @@ ul { list-style: none; }
     display: none;
     cursor: pointer;
     padding: var(--space-sm);
-    z-index: 1001;
+    z-index: 1001; /* Ensure it's above other nav elements */
 }
 .nav-toggle-label span {
     display: block;
@@ -166,7 +198,7 @@ ul { list-style: none; }
     justify-content: center;
     align-items: center;
     padding: var(--space-xl) var(--space-lg);
-    min-height: 180px;
+    min-height: 180px; /* Or adjust as needed */
 }
 
 /* === HERO LOGO IMAGE STYLING === */
@@ -177,62 +209,67 @@ ul { list-style: none; }
     border-radius: 50%;
     border: 4px solid var(--hero-logo-border-color);
     box-shadow: var(--shadow-md);
-
-    opacity: 0;
-    animation: logoFadeIn 1.2s ease-out forwards;
-
+    opacity: 0; /* Initial state for fade-in */
+    animation: logoFadeIn 1.2s ease-out 0.3s forwards; /* Added slight delay */
     transition: 
-        transform var(--transition-fast, 0.3s),
-        box-shadow var(--transition-fast, 0.3s),
-        border-color 0.3s ease;
-
-    will-change: transform, box-shadow, border-color;
+        transform var(--transition-fast), /* Keep fast for responsiveness */
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    will-change: transform, box-shadow, border-color, opacity;
 }
 
 /* === HOVER EFFECT WITH JIGGLE === */
 .hero-logo-image:hover {
-    transform: scale(1.1);
-    border-color: var(--hero-logo-border-hover-color, #08163a);
-    animation: jiggle 0.4s ease forwards;
+    transform: scale(1.1); /* Base scale for hover */
+    border-color: var(--hero-logo-border-color-hover);
+    animation: jiggleHeroLogo 0.4s ease-in-out forwards; /* Renamed for clarity */
     box-shadow: var(--shadow-lg);
-    opacity: 1;
+    /* Opacity is handled by logoFadeIn and stays 1 */
 }
 
 /* === REVERSE JIGGLE ANIMATION ON HOVER OUT === */
+/* Consider if this :not(:hover) is truly needed or if transitions suffice.
+   If kept, ensure it doesn't conflict with initial load.
+   The logoFadeIn animation sets the base state.
+   The :not(:hover) animation might trigger on load.
+   For a smoother experience without JS, transitions are often preferred for hover-out.
+   However, to keep closer to original intent of a specific reverse jiggle: */
 .hero-logo-image:not(:hover) {
-    animation: jiggleReverse 0.4s ease forwards;
-    opacity: 1;
+    /* This will run on load. Ensure logoFadeIn completes and establishes opacity and base scale. */
+    /* To make this less jarring on load, ensure jiggleReverseHeroLogo starts from a sensible base. */
+    animation: jiggleReverseHeroLogo 0.4s ease-in-out forwards;
 }
 
 /* === FADE IN ON PAGE LOAD === */
 @keyframes logoFadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.9) translateY(10px); /* Added slight Y translation */
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateY(0);
     }
 }
 
-/* === JIGGLE EFFECT ON HOVER === */
-@keyframes jiggle {
-    0%   { transform: scale(1.1) rotate(0deg); opacity: 1; }
-    25%  { transform: scale(1.1) rotate(3deg); opacity: 1; }
-    50%  { transform: scale(1.1) rotate(-3deg); opacity: 1; }
-    75%  { transform: scale(1.1) rotate(2deg); opacity: 1; }
-    100% { transform: scale(1.1) rotate(0deg); opacity: 1; }
+/* === JIGGLE EFFECT ON HOVER (Hero Logo) === */
+@keyframes jiggleHeroLogo { /* Renamed from 'jiggle' to avoid conflict */
+    0%   { transform: scale(1.1) rotate(0deg); } /* Starts from hover's base scale */
+    25%  { transform: scale(1.1) rotate(3deg); }
+    50%  { transform: scale(1.1) rotate(-3deg); }
+    75%  { transform: scale(1.1) rotate(2deg); }
+    100% { transform: scale(1.1) rotate(0deg); } /* Ends at hover's base scale */
 }
 
-/* === REVERSE JIGGLE EFFECT ON HOVER OUT === */
-@keyframes jiggleReverse {
-    0%   { transform: scale(1.1) rotate(0deg); opacity: 1; }
-    25%  { transform: scale(1.1) rotate(-2deg); opacity: 1; }
-    50%  { transform: scale(1.1) rotate(2deg); opacity: 1; }
-    75%  { transform: scale(1.1) rotate(-1deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+/* === REVERSE JIGGLE EFFECT ON HOVER OUT (Hero Logo) === */
+@keyframes jiggleReverseHeroLogo { /* Renamed from 'jiggleReverse' */
+    0%   { transform: scale(1.1) rotate(0deg); opacity: 1; } /* Assumes it was hovered */
+    25%  { transform: scale(1.05) rotate(-2deg); opacity: 1; } /* Smooth down scale slightly */
+    50%  { transform: scale(1.05) rotate(2deg); opacity: 1; }
+    75%  { transform: scale(1.02) rotate(-1deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; } /* Return to base non-hovered scale */
 }
+
 
 /* === Floating Support Me Button === */
 .support-me-button {
@@ -249,60 +286,57 @@ ul { list-style: none; }
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-
-    /* Add border to allow color/width changes on hover */
-    border: 4px solid transparent;
+    border: 4px solid transparent; /* Initial transparent border */
     transition: 
         background-color var(--transition-fast), 
         transform var(--transition-fast), 
         box-shadow var(--transition-fast),
-        border-color var(--transition-fast),
-        border-width var(--transition-fast);
-
-    will-change: transform, box-shadow, border-color, border-width;
+        border-color var(--transition-fast);
+        /* border-width transition removed to avoid jumpiness with color change */
+    will-change: transform, box-shadow, border-color, background-color;
 }
 
 .support-me-button:hover {
     background-color: var(--support-btn-hover-bg);
-    transform: translateY(-3px) scale(1.03);
+    transform: translateY(-3px) scale(1.03); /* Base hover transform */
     box-shadow: var(--shadow-lg);
-
-    border-color: black;
-    border-width: 4px; /* same as hero-logo-image */
-    animation: jiggle 0.4s ease forwards;
+    border-color: var(--support-btn-hover-border-color); /* Use variable */
+    /* border-width: 4px; */ /* Already set, no need to re-declare unless changing */
+    animation: jiggleSupportButton 0.4s ease-in-out forwards; /* Renamed */
 }
 
-/* Reverse jiggle animation when hover ends */
+/* Reverse jiggle animation when hover ends for support button */
+/* This will also run on load. If initial animation is not desired, this needs JS or a different approach. */
 .support-me-button:not(:hover) {
-    animation: jiggleReverse 0.4s ease forwards;
+     animation: jiggleReverseSupportButton 0.4s ease-in-out forwards; /* Renamed */
 }
 
 /* Pulse heart animation on emoji */
 .support-me-button span[role="img"] {
     animation: pulseHeart 1.5s infinite ease-in-out;
+    display: inline-block; /* Helps with transform consistency */
 }
 
-/* === JIGGLE ANIMATIONS === */
-@keyframes jiggle {
+/* === JIGGLE ANIMATIONS FOR SUPPORT BUTTON === */
+@keyframes jiggleSupportButton { /* Renamed */
     0%   { transform: translateY(-3px) scale(1.03) rotate(0deg); }
-    25%  { transform: translateY(-3px) scale(1.03) rotate(3deg); }
-    50%  { transform: translateY(-3px) scale(1.03) rotate(-3deg); }
+    25%  { transform: translateY(-3px) scale(1.03) rotate(4deg); } /* Slightly more pronounced */
+    50%  { transform: translateY(-3px) scale(1.03) rotate(-4deg); }
     75%  { transform: translateY(-3px) scale(1.03) rotate(2deg); }
     100% { transform: translateY(-3px) scale(1.03) rotate(0deg); }
 }
 
-@keyframes jiggleReverse {
-    0%   { transform: translateY(-3px) scale(1.03) rotate(0deg); }
-    25%  { transform: translateY(-3px) scale(1.03) rotate(-2deg); }
-    50%  { transform: translateY(-3px) scale(1.03) rotate(2deg); }
-    75%  { transform: translateY(-3px) scale(1.03) rotate(-1deg); }
-    100% { transform: translateY(0) scale(1) rotate(0deg); }
+@keyframes jiggleReverseSupportButton { /* Renamed */
+    0%   { transform: translateY(-3px) scale(1.03) rotate(0deg); } /* Assumes it was hovered */
+    25%  { transform: translateY(-2px) scale(1.02) rotate(-2deg); }
+    50%  { transform: translateY(-2px) scale(1.02) rotate(2deg); }
+    75%  { transform: translateY(-1px) scale(1.01) rotate(-1deg); }
+    100% { transform: translateY(0) scale(1) rotate(0deg); } /* Return to base */
 }
 
-/* Pulse heart keyframes remain the same */
 @keyframes pulseHeart {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.25); } /* Slightly stronger pulse */
 }
 
 /* === General Utility & Content Styles === */
@@ -314,10 +348,10 @@ ul { list-style: none; }
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
     border: 1px solid transparent;
     background-color: var(--primary-color);
-    color: #fff;
+    color: #fff; /* This is now fine with the new primary color */
 }
 .btn:hover {
     background-color: var(--primary-hover-color);
@@ -325,11 +359,11 @@ ul { list-style: none; }
     box-shadow: var(--shadow-sm);
 }
 .btn-secondary {
-    background-color: #6c757d; /* Bootstrap secondary grey */
+    background-color: var(--text-secondary-color); /* Using theme's secondary text color */
     color: #fff;
 }
 .btn-secondary:hover {
-    background-color: #5a6268;
+    background-color: #4a5568; /* Darker shade of secondary gray */
 }
 
 
@@ -344,25 +378,25 @@ ul { list-style: none; }
 }
 .card:hover {
     box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
+    transform: translateY(-5px); /* Slightly more lift */
 }
 .card-thumbnail {
     width: 100%;
     max-height: 220px;
     object-fit: cover;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0; /* If image is at the top of card */
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     margin-bottom: var(--space-md);
     border-bottom: 1px solid var(--border-color);
 }
 
 /* === Footer Placeholder === */
-footer.site-footer { /* Add class to differentiate from article footers */
+footer.site-footer {
     text-align: center;
     padding: var(--space-xl) var(--space-lg);
     margin-top: var(--space-xxl);
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
-    color: #6c757d;
+    color: var(--text-secondary-color);
 }
 
 /* === Search Bar Styles === */
@@ -378,15 +412,16 @@ footer.site-footer { /* Add class to differentiate from article footers */
     padding: var(--space-sm) var(--space-md);
     font-size: 1rem;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-color); /* Slightly different from card for input field */
+    border: 1px solid var(--border-color); /* Changed to main border color */
+    background-color: var(--bg-color);
     color: var(--text-color);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
-.search-container input[type="search"]::placeholder { color: #888; }
+.search-container input[type="search"]::placeholder { color: var(--text-secondary-color); }
 .search-container input[type="search"]:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+    box-shadow: 0 0 0 3px rgba(var(--primary-focus-shadow-color-rgb), 0.25); /* Use variable for focus ring */
 }
 
 /* === Ebooks Page Grid & Card Styles === */
@@ -396,51 +431,87 @@ footer.site-footer { /* Add class to differentiate from article footers */
     gap: var(--space-lg);
 }
 .ebook-card { display: flex; flex-direction: column; }
-.ebook-card .card-thumbnail { display: block; } /* Default: show thumbnail */
-.ebook-card .ebook-content h2 { display: block; font-size: 1.3rem; margin-top:0; } /* Default: show title */
-.ebook-card .ebook-description { font-size: 0.9rem; flex-grow: 1; margin-bottom: var(--space-md); }
+.ebook-card .card-thumbnail { display: block; }
+.ebook-card .ebook-content h2 { display: block; font-size: 1.3rem; margin-top:0; }
+.ebook-card .ebook-description { font-size: 0.9rem; flex-grow: 1; margin-bottom: var(--space-md); color: var(--text-secondary-color); }
 .ebook-card .ebook-actions .btn { margin-top: auto; margin-right: var(--space-sm); }
 
 /* Ebook card display variations */
 .ebooks-grid.title-only .ebook-card .card-thumbnail { display: none; }
 .ebooks-grid.thumb-only .ebook-card .ebook-content h2,
 .ebooks-grid.thumb-only .ebook-card .ebook-description { display: none; }
-/* For thumb-only, you might want to adjust card padding or make the image clickable directly */
-.ebooks-grid.thumb-only .ebook-card { padding: 0; } /* Example: remove padding if only thumb */
+.ebooks-grid.thumb-only .ebook-card { padding: 0; border: none; box-shadow: none; } /* Cleaner for thumb-only */
+.ebooks-grid.thumb-only .ebook-card:hover { transform: scale(1.03); box-shadow: var(--shadow-md); } /* Add hover to thumb if it's just image */
 .ebooks-grid.thumb-only .ebook-card .card-thumbnail { margin-bottom: 0; border-radius: var(--radius-md); border-bottom: none; }
-.ebooks-grid.thumb-only .ebook-card .ebook-actions { position: absolute; bottom: 10px; left: 10px; } /* Example styling */
+.ebooks-grid.thumb-only .ebook-card .ebook-actions {
+    position: absolute;
+    bottom: var(--space-sm); /* Use variables */
+    left: var(--space-sm);
+    background-color: rgba(0,0,0,0.5); /* Example for visibility */
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+}
+.ebooks-grid.thumb-only .ebook-card .ebook-actions .btn { font-size: 0.8rem; padding: var(--space-xs) var(--space-sm); }
 
 
 /* === Blog Page List Styles === */
 .blog-list { display: flex; flex-direction: column; gap: var(--space-lg); }
 .blog-post-summary h2 { font-size: 1.5rem; margin-top: 0; margin-bottom: var(--space-xs); }
-.blog-post-summary h2 a { color: var(--text-color); }
+.blog-post-summary h2 a { color: var(--text-color); transition: color var(--transition-fast); }
 .blog-post-summary h2 a:hover { color: var(--primary-color); }
-.blog-post-summary .post-meta { font-size: 0.85rem; color: #6c757d; margin-bottom: var(--space-sm); }
-.blog-post-summary .post-excerpt { font-size: 1rem; margin-bottom: var(--space-md); }
+.blog-post-summary .post-meta { font-size: 0.85rem; color: var(--text-secondary-color); margin-bottom: var(--space-sm); }
+.blog-post-summary .post-excerpt { font-size: 1rem; margin-bottom: var(--space-md); color: var(--text-color); } /* Ensure excerpt uses main text color or secondary if preferred */
 
 /* === About Page Specifics (Example) === */
 .about-me-section .bio-container { display: flex; gap: var(--space-lg); align-items: flex-start; flex-wrap: wrap; }
-.about-me-section .profile-image { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-sm); }
+.about-me-section .profile-image { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-md); border: 3px solid var(--border-color); }
 .about-me-section .bio-text { flex: 1; min-width: 300px; }
-.profile-links ul, .highlights-timeline ul { padding: 0; }
+.profile-links ul, .highlights-timeline ul { padding: 0; } /* Removed list-style: none as it's global */
 .profile-links ul li { display: inline-block; margin-right: var(--space-sm); }
 
 /* === Single Blog Post & Ebook Detail (Templates) === */
 .blog-post-full, .ebook-detail { max-width: 800px; margin-left: auto; margin-right: auto; }
 .blog-post-header, .ebook-detail-header { text-align: center; margin-bottom: var(--space-xl); padding-bottom: var(--space-lg); border-bottom: 1px solid var(--border-color); }
 .blog-post-header h1, .ebook-detail-header h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
-.blog-post-body p, .ebook-info p { margin-bottom: var(--space-md); }
+.blog-post-body p, .ebook-info p { margin-bottom: var(--space-md); color: var(--text-color); } /* Ensure good readability */
 .blog-post-body h2, .ebook-info h2 { margin-top: var(--space-lg); margin-bottom: var(--space-sm); font-size: 1.6rem; }
 blockquote {
     padding: var(--space-md); margin: var(--space-lg) 0; border-left: 4px solid var(--primary-color);
-    background-color: #e9ecef; border-radius: var(--radius-sm); font-style: italic;
+    background-color: var(--nav-active-bg-color); /* Using light primary bg for quotes */
+    border-radius: var(--radius-sm); font-style: italic; color: var(--text-secondary-color);
 }
-pre { background-color: #e9ecef; padding: var(--space-md); border-radius: var(--radius-sm); overflow-x: auto; font-size: 0.9em; border: 1px solid var(--border-color); margin-bottom: var(--space-lg); }
-code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+blockquote p { color: var(--text-color); } /* Ensure text inside blockquote is readable */
+
+pre {
+    background-color: #1e293b; /* Dark background for code blocks */
+    color: #e2e8f0; /* Light text for dark code blocks */
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    font-size: 0.9em;
+    border: 1px solid #334155; /* Border for dark code blocks */
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}
+code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    background-color: rgba(var(--primary-focus-shadow-color-rgb), 0.1); /* Subtle background for inline code */
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em; /* Slightly smaller than pre */
+    color: var(--primary-hover-color); /* Make inline code stand out a bit */
+}
+pre code { /* Reset for code inside pre */
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
 
 /* === 404 Page (Standalone, but some vars can be used if defined globally) === */
-.page-404-body {
+.page-404-body { /* This class would be on the body tag for the 404 page */
     font-family: var(--font-primary, 'Inter', sans-serif);
     background-color: var(--bg-color, #f8f9fa);
     color: var(--text-color, #212529);
@@ -450,16 +521,16 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courie
 .status-code-404 {
     font-family: var(--font-secondary, 'Space Grotesk', sans-serif);
     font-size: clamp(6rem, 25vw, 10rem); font-weight: 700;
-    color: var(--primary-color, #007bff); margin: 0;
+    color: var(--primary-color, #3b82f6); margin: 0;
     animation: bounceIn404 0.7s ease-out;
 }
-.message-404 { font-size: 1.5rem; margin: 20px 0; }
+.message-404 { font-size: 1.5rem; margin: 20px 0; color: var(--text-secondary-color, #6b7280); }
 .home-link-404 {
-    display: inline-block; padding: 12px 25px; background-color: var(--primary-color, #007bff);
+    display: inline-block; padding: 12px 25px; background-color: var(--primary-color, #3b82f6);
     color: #fff; text-decoration: none; border-radius: var(--radius-md); font-weight: 500; font-size: 1.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
-.home-link-404:hover { opacity: 0.85; transform: translateY(-3px); }
+.home-link-404:hover { background-color: var(--primary-hover-color, #2563eb); transform: translateY(-3px); }
 @keyframes bounceIn404 {
     0% { transform: scale(0.5) translateY(-30px); opacity: 0; }
     100% { transform: scale(1) translateY(0); opacity: 1; }
@@ -468,44 +539,68 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courie
 
 /* === Responsiveness === */
 @media (max-width: 768px) {
-    :root { --navbar-height: 50px; } /* Slightly smaller navbar on mobile */
+    :root { --navbar-height: 55px; } /* Adjusted navbar height for mobile */
     body { padding-top: var(--navbar-height); }
 
     .nav-container { padding: 0 var(--space-md); }
     .nav-menu {
-        display: none;
+        display: none; /* Initial state: hidden */
         flex-direction: column;
         position: absolute;
         top: var(--navbar-height);
         left: 0;
         width: 100%;
-        background-color: var(--nav-bg); /* Solid background for dropdown */
-        box-shadow: var(--shadow-md);
+        background-color: var(--nav-bg);
+        box-shadow: var(--shadow-md); /* More pronounced shadow for dropdown */
         padding: var(--space-md) 0;
         border-top: 1px solid var(--border-color);
+        z-index: 999; /* Below navbar toggle label */
     }
     .nav-toggle-checkbox:checked ~ .nav-menu { display: flex; }
-    .nav-toggle-label { display: block; } /* Show hamburger */
-    .nav-menu li { margin: var(--space-sm) 0; width: 100%; text-align: center; }
-    .nav-menu a { display: block; padding: var(--space-sm) 0; width: 100%; }
+    .nav-toggle-label { display: block; }
+    .nav-menu li { margin: 0; width: 100%; text-align: center; } /* Removed top/bottom margin for cleaner look */
+    .nav-menu a {
+        display: block;
+        padding: var(--space-md) 0; /* Larger tap target */
+        width: 100%;
+        border-radius: 0; /* Full width links */
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background-color: var(--nav-active-bg-color); /* Consistent hover/active background */
+    }
+
 
     /* Hamburger Animation */
     .nav-toggle-checkbox:checked ~ .nav-toggle-label span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .nav-toggle-checkbox:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+    .nav-toggle-checkbox:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; transform: translateX(-10px); } /* Added slide out */
     .nav-toggle-checkbox:checked ~ .nav-toggle-label span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .hero-logo-image { width: clamp(80px, 20vw, 120px); height: clamp(80px, 20vw, 120px); border-width: 3px;}
-    .page-container { padding: var(--space-md); margin-top: var(--space-lg); }
-    .support-me-button { padding: var(--space-xs) var(--space-sm); font-size: 0.9rem; }
+    .page-container { padding: var(--space-md); margin-top: var(--space-md); } /* Reduced top margin */
+    .support-me-button {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.85rem; /* Slightly smaller font */
+        bottom: var(--space-md); /* Consistent spacing */
+        right: var(--space-md);
+    }
+    .support-me-button span[role="img"] { font-size: 0.9em; } /* Scale emoji slightly with button */
+
+    .blog-post-header h1, .ebook-detail-header h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); } /* Adjust heading sizes */
 }
 
 /* Accessibility: Focus visible */
 :focus-visible {
-  outline: 3px solid var(--primary-color);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 5px rgba(0,123,255,0.25); /* More prominent focus */
-}
-.nav-toggle-label:focus-visible { /* Specific for hamburger if needed */
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--primary-focus-shadow-color-rgb), 0.3);
+}
+/* Remove default outline for elements that have custom focus-visible if not needed */
+*:focus {
+    outline: none;
+}
+.nav-toggle-label:focus-visible { /* Specific for hamburger */
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    /* box-shadow not typically needed if outline is clear */
 }
